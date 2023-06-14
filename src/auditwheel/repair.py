@@ -72,7 +72,8 @@ def repair_wheel(
             ext_libs: dict[str, str] = v[abis[0]]["libs"]
             replacements: list[tuple[str, str]] = []
             for soname, src_path in ext_libs.items():
-                if soname in exclude:
+                libname = soname[:soname.find(".so")]
+                if libname in exclude:
                     logger.info(f"Excluding {soname}")
                     continue
 
